@@ -15,9 +15,10 @@ export interface Tags extends Base {
 
 export interface Transaction extends Base {
   id: string
-  item: string
+  project_id: string
+  name: string
   amount: number
-  tags?: string[]
+  tag?: string[]
   remarks?: string
   fixed: boolean
 }

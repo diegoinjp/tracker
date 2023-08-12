@@ -1,16 +1,1 @@
-import { MenuItemType } from './types'
-
-export const MenuItems: MenuItemType[] = [
-  {
-    name: 'Home',
-    path: '/',
-  },
-  {
-    name: 'About',
-    path: '/about',
-  },
-  {
-    name: 'Tracker',
-    path: '/tracker',
-  },
-]
+export const SITE_TITLE = 'Tracker'

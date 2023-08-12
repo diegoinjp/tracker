@@ -20,6 +20,7 @@
     "pocketbase": "^0.16.0",
     "solid-js": "^1.7.9",
     "solid-start": "^0.2.31",
+    "solid-start-vercel": "^0.3.2",
     "undici": "^5.15.1"
   },
   "engines": {

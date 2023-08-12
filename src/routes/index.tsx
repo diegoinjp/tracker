@@ -1,5 +1,7 @@
-import { For, createSignal, onMount } from 'solid-js'
+import { For, Show, createSignal, onMount } from 'solid-js'
 import { IncomeExpense } from '~/components/IncomeExpense'
+import { List } from '~/components/List'
+import useCheckTransaction from '~/hooks/useCheckTransaction'
 import { Project, Transaction } from '~/services/domain'
 import { getActiveProject, getProjectTransactions, onTransactionAdded } from '~/services/service'
 import { formatCurrency } from '~/utils/functions'
@@ -34,22 +36,16 @@ export default function Tracker() {
   }
 
   return (
-    <main class="text-center mx-auto max-w-lg text-gray-700 p-4 bg-slate-200">
-      <p>Balance: {balance()}</p>
-      <IncomeExpense transactions={transactions()} />
-      {transactions().length > 0 && (
-        <For each={transactions()}>
-          {(transaction) => (
-            <div class="flex justify-between">
-              <div class="flex flex-col">
-                <div class="text-sm">{transaction.name}</div>
-                <div class="text-sm">{transaction.remarks}</div>
-              </div>
-              <div class="text-sm">{formatCurrency(transaction.amount)}</div>
-            </div>
-          )}
-        </For>
-      )}
+    <main class="text-center mx-auto max-w-sm text-gray-700 p-4 flex flex-col gap-8">
+      <Show when={project().name && transactions().length > 0} fallback={<p>Loading</p>}>
+        {/* Big balance with label */}
+        <div>
+          <h3 class="text-2xl text-gray-500">Balance</h3>
+          <h1 class="text-4xl text-gray-700">{balance()}</h1>
+        </div>
+        <IncomeExpense transactions={transactions()} />
+        <List transactions={transactions()} />
+      </Show>
     </main>
   )
 }

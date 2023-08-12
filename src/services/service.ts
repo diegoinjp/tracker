@@ -26,6 +26,7 @@ export async function getProjectTransactions(id: string): Promise<Transaction[]>
   const resultList = await pb.collection('transactions').getList<Transaction>(1, 50, {
     field: id,
     filter: 'created >= "2023-01-01 00:00:00"',
+    sort: '-created',
   })
   console.log('💦', resultList)
   return resultList.items
